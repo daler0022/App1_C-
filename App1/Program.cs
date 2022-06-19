@@ -77,8 +77,48 @@ namespace App1
             }*/
             #endregion
 
-            for (int i = 1; i < 4; i++)
-                Console.WriteLine(i);
+            //Задача №1
+            /*int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            int evenNumber = 0;
+            int oddNumber = 0;
+
+            foreach(int i in arr)
+            {
+                if (i % 2 == 0)
+                {
+                    evenNumber++;
+                }
+                else
+                {
+                    oddNumber++;
+                }
+            }
+            Console.WriteLine(evenNumber);
+            Console.WriteLine(oddNumber);*/
+
+            //Задача №2
+            /*int[] array = { 1, 3, 3, 8, 7, 6, 7, 8, 9, 10 };
+
+            for(int i = 0; i < array.Length; i++)
+            {
+                for(int j = i + 1; j < array.Length; j++)
+                {
+                    if (array[i] == array[j])
+                        Console.WriteLine($"Повторяется число под индексом {j}");
+                }
+            }*/
+
+            //Задача №3
+            int[] arr = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            int summ = 0;
+            {
+                for(int i = 0; i < arr.Length; i++)
+                {
+                    summ += arr[i];
+                }
+            }
+
+            Console.WriteLine(summ);
 
             Console.ReadLine();
         }
