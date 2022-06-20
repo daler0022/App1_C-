@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Reflection.Metadata;
 
 namespace App1
 {
@@ -7,6 +9,7 @@ namespace App1
         static void Main(string[] args)
         {
             #region Урок 1
+
             /*string x = Console.ReadLine();
             string y = Console.ReadLine();
             bool resultConvert = int.TryParse(x, out int x2) && int.TryParse(y, out int y2);
@@ -22,8 +25,11 @@ namespace App1
             }
 
             Console.ReadLine();*/
+
             #endregion
+
             #region Урок 2
+
             /*int a = 6;
             int b = 8;
             b--;
@@ -75,7 +81,10 @@ namespace App1
             {
                 Console.WriteLine("Нечётное число");
             }*/
+
             #endregion
+
+            #region Урок 3
 
             //Задача №1
             /*int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -109,7 +118,7 @@ namespace App1
             }*/
 
             //Задача №3
-            int[] arr = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            /*int[] arr = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             int summ = 0;
             {
                 for(int i = 0; i < arr.Length; i++)
@@ -118,9 +127,55 @@ namespace App1
                 }
             }
 
-            Console.WriteLine(summ);
+            Console.WriteLine(summ);*/
+
+            #endregion
+
+
+            //void SayHello(string message)
+            //{
+            //    Console.WriteLine($"Здравствуйте {message}");
+            //}
+
+            //SayHello("Далер");
+
+            /*int calc(string op, int a, int b)
+                {
+                    switch (op)
+                    {
+                        case "+": return a + b;
+                        case "-": return a - b;
+                        case "*": return a * b;
+                        case "/": return a / b;
+                        default: return 0;
+                    }
+                }
+    
+                int result = calc("/", 35, 15);
+                Console.WriteLine(result);*/
+
+            /*string greatValue(int a, int b)
+            {
+                if (a > b)
+                {
+                    return $"Число {a} больше {b}";
+                }
+                else if (a < b)
+                {
+                    return $"Число {b} больше {a}";
+                }
+                else
+                {
+                    return $"Числа равны";
+                }
+            }
+
+            string result1 = greatValue(10, 5);
+            Console.WriteLine(result1);*/
+            
 
             Console.ReadLine();
         }
     }
 }
+
