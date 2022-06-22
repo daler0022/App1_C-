@@ -172,9 +172,17 @@ namespace App1
 
             string result1 = greatValue(10, 5);
             Console.WriteLine(result1);*/
-            
+            double B;
 
-            Console.ReadLine();
+            void PowerA3(double A, out double B)
+            {
+                B = Math.Pow(A, 3);
+            }
+
+            PowerA3(2, out B);
+
+            Console.WriteLine(B);
+
         }
     }
 }
