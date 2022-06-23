@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Globalization;
-using System.Reflection.Metadata;
+using Base;
 
 namespace App1
 {
@@ -27,7 +26,6 @@ namespace App1
             Console.ReadLine();*/
 
             #endregion
-
             #region Урок 2
 
             /*int a = 6;
@@ -83,7 +81,6 @@ namespace App1
             }*/
 
             #endregion
-
             #region Урок 3
 
             //Задача №1
@@ -130,7 +127,7 @@ namespace App1
             Console.WriteLine(summ);*/
 
             #endregion
-
+            #region Урок 4
 
             //void SayHello(string message)
             //{
@@ -172,17 +169,30 @@ namespace App1
 
             string result1 = greatValue(10, 5);
             Console.WriteLine(result1);*/
-            double B;
+            //double B;
 
-            void PowerA3(double A, out double B)
-            {
-                B = Math.Pow(A, 3);
-            }
+            //void PowerA3(double A, out double B)
+            //{
+            //    B = Math.Pow(A, 3);
+            //}
 
-            PowerA3(2, out B);
+            //PowerA3(2, out B);
 
-            Console.WriteLine(B);
+            //Console.WriteLine(B);
 
+            #endregion
+
+            Person relad = new Person("Abdu", 20);
+
+            Person daler = new Person("Daler");
+
+            relad.Hello();
+
+            People all = new People("Abdu", 23);
+
+            all.Print();
+
+            Console.ReadLine();
         }
     }
 }
