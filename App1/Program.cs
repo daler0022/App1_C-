@@ -3,9 +3,9 @@ using Base;
 
 namespace App1
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             #region Урок 1
 
@@ -181,6 +181,7 @@ namespace App1
             //Console.WriteLine(B);
 
             #endregion
+            #region Урок 5
 
             Person relad = new Person("Abdu", 20);
 
@@ -191,6 +192,10 @@ namespace App1
             People all = new People("Abdu", 23);
 
             all.Print();
+
+            #endregion
+
+
 
             Console.ReadLine();
         }
