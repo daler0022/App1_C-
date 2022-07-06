@@ -2,47 +2,25 @@
 
 namespace Base
 {
-    class Person
+    abstract class Transport
     {
-        public string name;
-        public int age;
-
-        public Person()
+        public string Name { get; }
+        public Transport(string name)
         {
-            Console.WriteLine($"Имя: {name}  Возраст: {age}");
+            Name = name;
         }
-
-        public Person(string name)
-        {
-            this.age = 19;
-            this.name = name;
-            int doubleAge = age * 2;
-            Console.WriteLine($"Имя: {name}  Возраст: {age} {doubleAge}");
-        }
-        public Person(string name, int age)
-        {
-            this.age = age;
-            this.name = name;
-            Console.WriteLine($"Имя: {name}  Возраст: {age}");
-        }
-
-        public void Hello()
-        {
-            Console.WriteLine($"Здравствуйте {name}! В следуюшем году вам будем {++age}");
-        }
+        public void Move() => Console.WriteLine($"{Name} движется");
     }
-
-    struct People
+    class Ship : Transport
     {
-        public string name;
-        public int age;
-
-        public People(string name, int age)
-        {
-            this.name = name;
-            this.age = age;
-        }
-
-        public void Print() => Console.WriteLine($"Имя: {name}  Возраст: {age}");
+        public Ship(string name) : base(name) { }
+    }
+    class Aircraft : Transport
+    {
+        public Aircraft(string name) : base(name) { }
+    }
+    class Car : Transport
+    {
+        public Car(string name) : base(name) { }
     }
 }

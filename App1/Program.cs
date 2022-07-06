@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography.X509Certificates;
 using Base;
 
 namespace App1
@@ -183,19 +185,47 @@ namespace App1
             #endregion
             #region Урок 5
 
-            Person relad = new Person("Abdu", 20);
+            //Person relad = new Person("Abdu", 20);
 
-            Person daler = new Person("Daler");
+            //Person daler = new Person("Daler");
 
-            relad.Hello();
+            //relad.Hello();
 
-            People all = new People("Abdu", 23);
+            //People all = new People("Abdu", 23);
 
-            all.Print();
+            //all.Print();
 
             #endregion
+            #region Урок 6
+            //Person relad = new Person("Abdu", 20);
 
+            //Person daler = new Person("Daler");
 
+            //relad.Hello();
+
+            //People all = new People("Abdu", 23);
+
+            //all.Print();
+            #endregion
+
+            Person bob = new Person("Bob");
+            Console.WriteLine(bob.Age);
+
+            Employee tom = new Employee("Tom", "Microsoft");
+            tom.Print();
+            Console.WriteLine(tom.Age);
+            tom.Age = 22;
+            Console.WriteLine(tom.Age);
+            tom.Age = 12;
+            Console.WriteLine(tom.Age);
+
+            Transport car = new Car("машина");
+            Transport ship = new Ship("корабль");
+            Transport aircraft = new Aircraft("самолет");
+
+            car.Move();        
+            ship.Move();
+            aircraft.Move();
 
             Console.ReadLine();
         }
