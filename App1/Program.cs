@@ -1,7 +1,7 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Security.Cryptography.X509Certificates;
-using Base;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace App1
 {
@@ -207,8 +207,8 @@ namespace App1
 
             //all.Print();
             #endregion
-
-            Person bob = new Person("Bob");
+            #region Урок 7
+            /*Person bob = new Person("Bob");
             Console.WriteLine(bob.Age);
 
             Employee tom = new Employee("Tom", "Microsoft");
@@ -225,9 +225,203 @@ namespace App1
 
             car.Move();        
             ship.Move();
-            aircraft.Move();
+            aircraft.Move();*/
+            #endregion
+
+
+            // Dictionary
+            Dictionary<string, string> pairs = new Dictionary<string, string>();
+
+            pairs.Add("учитель", "teacher");
+            pairs.Add("проверка", "check");
+            pairs.Add("компьютер", "computer");
+            pairs.Add("автомобиль", "car");
+
+            Console.WriteLine("\npairs");
+            foreach (KeyValuePair<string, string> e in pairs) Console.WriteLine($"{e} ");     
+
+            Console.WriteLine($"\n\npairs[\"учитель\"] = {pairs["учитель"]}"); 
+
+            Console.WriteLine("\npairs.keys");
+            foreach (var e in pairs.Keys) Console.Write($"{e} ");
+
+            Console.WriteLine("\n\npairs.values");
+            foreach (var e in pairs.Values) Console.Write($"{e} ");
+
+            Console.WriteLine("\n\nудаление \"учитель\"");
+
+            pairs.Remove("учитель");
+
+            Console.WriteLine("\npairs");
+            foreach (KeyValuePair<string, string> e in pairs) Console.WriteLine($"{e} ");       
+
+            Console.WriteLine("\n");
+
+            Console.WriteLine($"элементов в словаре: {pairs.Count}"); 
+            pairs.Clear();
+            Console.WriteLine("pairs.clear(); выполнен");
+            Console.WriteLine($"элементов в словаре: {pairs.Count}");
+
+
+            // List
+            List<Person> persons = new List<Person>
+            {
+                new Person("Daler", "Olimov", 19)
+            };
+
+            persons.Add(new Person("Abduaziz", "Aminov", 20));
+            persons.Add(new Person("Munir", "Aminov", 22));
+
+
+            Console.WriteLine(persons.Count);
+
+            persons.Insert(0, new Person("Dilshod", "Olimov", 16));
+
+            Console.WriteLine(persons.Count);
+
+            Console.WriteLine("\n");
+
+            foreach (var e in persons)
+            {
+                if(e.Surname == "Olimov")
+                {
+                    e.Print();
+                }
+            }
+
+            Console.WriteLine("\n");
+
+            foreach(var person in persons)
+            {
+                person.Print();
+                
+            }
+            persons.Reverse();
+
+            persons.RemoveAt(1);
+
+            Console.WriteLine("\n");
+            foreach(var person in persons)
+            {
+                person.Print();
+            }
+
+
+            for (var i = 1; i < persons.Count; i++)
+            {
+                if (persons[i].Age < 18)
+                {
+                    persons[i].Age = 18;
+                }
+            }
+
+            foreach (var person in persons)
+            {
+                person.Print();
+            }
+
+            var range = persons.GetRange(1, 2);
+
+
+
+            // Queue
+
+            Queue<int> queue = new Queue<int>();
+
+            // First In First Out = FIFO
+
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+            queue.Enqueue(4);
+            queue.Enqueue(5);
+
+            foreach (var e in queue) Console.Write($"{e} "); // 1 2 3 4 5
+            Console.WriteLine("\n");
+
+            Console.WriteLine($"queue.Dequeue() = {queue.Dequeue()}"); // 1
+            foreach (var e in queue) Console.Write($"{e} "); // 2 3 4 5
+            Console.WriteLine("\n");
+
+
+            Console.WriteLine($"queue.Peek() = {queue.Peek()}"); // 2
+            foreach (var e in queue) Console.Write($"{e} "); // 2 3 4 5
+            Console.WriteLine("\n");
+
+
+
+            // Stack 
+
+            Stack<int> stack = new Stack<int>();
+
+            // First In Last Out -FILO
+
+            stack.Push(1);
+            stack.Push(2);
+            stack.Push(3);
+            stack.Push(4);
+            stack.Push(5);
+
+            foreach (var e in stack) Console.Write($"{e} "); // 5 4 3 2 1
+            Console.WriteLine("\n");
+
+            Console.WriteLine($"stack.Pop() = {stack.Pop()}"); // 5
+            foreach (var e in stack) Console.Write($"{e} "); // 4 3 2 1
+            Console.WriteLine("\n");
+
+
+            Console.WriteLine($"stack.Peek() = {stack.Peek()}"); // 4
+            foreach (var e in stack) Console.Write($"{e} "); // 4 3 2 1
+            Console.WriteLine("\n");
+
+
+            // ObservableCollection
+
+            ObservableCollection<User> users = new ObservableCollection<User>
+               {
+                    new User { Name = "Evgeni"},
+                    new User { Name = "Slava"},
+                    new User { Name = "Boris"}
+               };
+
+            users.CollectionChanged += Users_CollectionChanged;
+
+            users.Add(new User { Name = "Sergei" });
+
+            users.RemoveAt(1);
+
+            users[0] = new User { Name = "Petia" };
+
+            foreach (User user in users)
+            {
+                Console.WriteLine(user.Name);
+            }
 
             Console.ReadLine();
+        }
+        private static void Users_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            // срабатывает при добавлении элемента
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                User newUser = e.NewItems[0] as User;
+                Console.WriteLine("Добавлен новый объект: {0}", newUser.Name);
+            }
+
+            // срабатывает при удалении элемента
+            else if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                User oldUser = e.OldItems[0] as User;
+                Console.WriteLine("Удален объект: {0}", oldUser.Name);
+            }
+
+            // срабатывает при замене элемента
+            else if (e.Action == NotifyCollectionChangedAction.Replace)
+            {
+                User replacedUser = e.OldItems[0] as User;
+                User replacingUser = e.NewItems[0] as User;
+                Console.WriteLine("Объект {0} заменен объектом {1}", replacedUser.Name, replacingUser.Name);
+            }
         }
     }
 }

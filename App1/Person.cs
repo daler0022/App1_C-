@@ -1,26 +1,22 @@
 ﻿using System;
 
-namespace Base
+namespace App1
 {
-    abstract class Transport
+    class Person
     {
-        public string Name { get; }
-        public Transport(string name)
+    public string Name { get; set; }
+    public string Surname { get; set; }
+    public int Age { get; set; }
+
+    public Person (string name, string surname, int age)
         {
             Name = name;
+            Surname = surname;
+            Age = age;
         }
-        public void Move() => Console.WriteLine($"{Name} движется");
-    }
-    class Ship : Transport
-    {
-        public Ship(string name) : base(name) { }
-    }
-    class Aircraft : Transport
-    {
-        public Aircraft(string name) : base(name) { }
-    }
-    class Car : Transport
-    {
-        public Car(string name) : base(name) { }
+    public void Print()
+        {
+            Console.WriteLine($"Имя: {Name}, Фамилия: {Surname}, Возраст: {Age}");
+        }
     }
 }
