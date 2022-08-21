@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -709,112 +710,154 @@ namespace App1
             //    Console.WriteLine($"Exception: {e}");
             //}
             #endregion
+            #region Урок 22
+            //DriveInfo[] drives = DriveInfo.GetDrives();
 
-            DriveInfo[] drives = DriveInfo.GetDrives();
+            //foreach (DriveInfo drive in drives)
+            //{
+            //    Console.WriteLine($"Название: {drive.Name}");
+            //    Console.WriteLine($"Тип: {drive.DriveType}");
+            //    if (drive.IsReady)
+            //    {
+            //    }
+            //    Console.WriteLine($"Объем диска: {drive.TotalSize}");
+            //    Console.WriteLine($"Свободное пространство: {drive.TotalFreeSpace}");
+            //    Console.WriteLine($"Метка диска: {drive.VolumeLabel}");
+            //    Console.WriteLine($"Свободное место на диске: {drive.AvailableFreeSpace}");
+            //    Console.WriteLine($"Корневой каталог: {drive.RootDirectory}");
+            //    Console.WriteLine($"Имя файловой системы: {drive.DriveFormat}");
+            //}
+            //Console.WriteLine();
 
-            foreach (DriveInfo drive in drives)
+            //string dirName = "C:\\";
+            //if (Directory.Exists(dirName))
+            //{
+            //    Console.WriteLine("Подкаталоги:");
+            //    string[] dirs = Directory.GetDirectories(dirName);
+            //    foreach (string s in dirs)
+            //    {
+            //        Console.WriteLine(s);
+            //    }
+            //    Console.WriteLine();
+            //    Console.WriteLine("Файлы:");
+            //    string[] files = Directory.GetFiles(dirName);
+            //    foreach (string s in files)
+            //    {
+            //        Console.WriteLine(s);
+            //    }
+            //}
+
+
+            //string path = @"C:\test";
+            //DirectoryInfo drinfo = new DirectoryInfo(path);
+
+            //if(!drinfo.Exists)
+            //{
+            //    drinfo.Create();
+            //    Console.WriteLine("Файл успешно создан!");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Файл не создан!");
+            //}
+
+            //string dirName1 = "C:\\test";
+
+            //DirectoryInfo dirInfo = new DirectoryInfo(dirName1);
+
+            //Console.WriteLine($"Название каталога: {dirInfo.Name}");
+            //Console.WriteLine($"Полное название каталога: {dirInfo.FullName}");
+            //Console.WriteLine($"Время создания каталога: {dirInfo.CreationTime}");
+            //Console.WriteLine($"Корневой каталог: {dirInfo.Root}");
+
+            //string dirName2 = @"C:\test";
+
+            //DirectoryInfo dirInfo1 = new DirectoryInfo(dirName2);
+            //if (dirInfo1.Exists)
+            //{
+            //    dirInfo1.Delete(true);
+            //    Console.WriteLine("Каталог удален");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Каталог не существует");
+            //}
+
+            //string path1 = @"C:\projects\content.txt";
+
+            //string originalText = "Hello IT-RUN";
+
+            //File.WriteAllText(path1, originalText);
+
+            //string fileText = File.ReadAllText(path1);
+
+            //Console.WriteLine(fileText);
+
+            //FileInfo fileDelete = new FileInfo(path1);
+
+            //if (fileDelete.Exists)
+            //{
+            //    fileDelete.Delete();
+            //}
+
+            //string newPath = @"C:\projects\context\content.txt";
+
+            //FileInfo fileMove = new FileInfo(path1);
+            //if(fileMove.Exists)
+            //{
+            //    fileMove.MoveTo(newPath);
+            //}
+
+            //string copyPath = @"C:\projects\context\copy.txt";
+            //FileInfo fileCopy = new FileInfo(path1);
+            //if(fileCopy.Exists)
+            //{
+            //    fileCopy.CopyTo(copyPath);
+            //}
+            #endregion
+
+            void CreatePerson(string name, string surname, int age)
             {
-                Console.WriteLine($"Название: {drive.Name}");
-                Console.WriteLine($"Тип: {drive.DriveType}");
-                if (drive.IsReady)
+                Person person = new Person(name, surname, age);
+                var results = new List<ValidationResult>();
+                var context = new ValidationContext(person);
+                if (!Validator.TryValidateObject(person, context, results, true))
                 {
+                    foreach (var error in results)
+                    {
+                        Console.WriteLine(error.ErrorMessage);
+                    }
                 }
-                Console.WriteLine($"Объем диска: {drive.TotalSize}");
-                Console.WriteLine($"Свободное пространство: {drive.TotalFreeSpace}");
-                Console.WriteLine($"Метка диска: {drive.VolumeLabel}");
-                Console.WriteLine($"Свободное место на диске: {drive.AvailableFreeSpace}");
-                Console.WriteLine($"Корневой каталог: {drive.RootDirectory}");
-                Console.WriteLine($"Имя файловой системы: {drive.DriveFormat}");
+                else
+                    Console.WriteLine($"Объект User успешно создан. Name: {person.Print()}");
+
+                Console.WriteLine(); // для разделения
             }
-            Console.WriteLine();
 
-            string dirName = "C:\\";
-            if (Directory.Exists(dirName))
+            CreatePerson("Daler", "Olimov", 19);
+
+
+            Validate(new User("Daler", 19));
+            Validate(new User("Dilshod", 120));
+            Validate(new User("Abduaziz", 22));
+
+            void Validate(User user)
             {
-                Console.WriteLine("Подкаталоги:");
-                string[] dirs = Directory.GetDirectories(dirName);
-                foreach (string s in dirs)
+                var results = new List<ValidationResult>();
+                var context = new ValidationContext(user);
+                if (!Validator.TryValidateObject(user, context, results, true))
                 {
-                    Console.WriteLine(s);
+                    foreach (var error in results)
+                    {
+                        Console.WriteLine(error.ErrorMessage);
+                    }
                 }
+                else
+                    Console.WriteLine("Пользователь прошел валидацию");
                 Console.WriteLine();
-                Console.WriteLine("Файлы:");
-                string[] files = Directory.GetFiles(dirName);
-                foreach (string s in files)
-                {
-                    Console.WriteLine(s);
-                }
             }
 
-
-            string path = @"C:\test";
-            DirectoryInfo drinfo = new DirectoryInfo(path);
-
-            if(!drinfo.Exists)
-            {
-                drinfo.Create();
-                Console.WriteLine("Файл успешно создан!");
-            }
-            else
-            {
-                Console.WriteLine("Файл не создан!");
-            }
-
-            string dirName1 = "C:\\test";
-
-            DirectoryInfo dirInfo = new DirectoryInfo(dirName1);
-
-            Console.WriteLine($"Название каталога: {dirInfo.Name}");
-            Console.WriteLine($"Полное название каталога: {dirInfo.FullName}");
-            Console.WriteLine($"Время создания каталога: {dirInfo.CreationTime}");
-            Console.WriteLine($"Корневой каталог: {dirInfo.Root}");
-
-            string dirName2 = @"C:\test";
-
-            DirectoryInfo dirInfo1 = new DirectoryInfo(dirName2);
-            if (dirInfo1.Exists)
-            {
-                dirInfo1.Delete(true);
-                Console.WriteLine("Каталог удален");
-            }
-            else
-            {
-                Console.WriteLine("Каталог не существует");
-            }
-
-            string path1 = @"C:\projects\content.txt";
-
-            string originalText = "Hello IT-RUN";
-
-            File.WriteAllText(path1, originalText);
-
-            string fileText = File.ReadAllText(path1);
-
-            Console.WriteLine(fileText);
-
-            FileInfo fileDelete = new FileInfo(path1);
-
-            if (fileDelete.Exists)
-            {
-                fileDelete.Delete();
-            }
-
-            string newPath = @"C:\projects\context\content.txt";
-
-            FileInfo fileMove = new FileInfo(path1);
-            if(fileMove.Exists)
-            {
-                fileMove.MoveTo(newPath);
-            }
-
-            string copyPath = @"C:\projects\context\copy.txt";
-            FileInfo fileCopy = new FileInfo(path1);
-            if(fileCopy.Exists)
-            {
-                fileCopy.CopyTo(copyPath);
-            }
-
-            Console.ReadLine();
+            Console.ReadKey();
         
         }
     }
